@@ -1,4 +1,3 @@
-
 #1 - Construa uma Gramática e uma Tabela de Símbolos para uma linguagem de programação que respeite
 #os seguintes critérios:
 
@@ -46,7 +45,7 @@ class Lexico:
         ('WHITESPACE', r'\s+'),                   # Espaços em branco (serão ignorados)
     ]
 
-    def lexer(self, code):
+    def lexico(self, code):
         tokens = []
         index = 0
 
@@ -57,7 +56,7 @@ class Lexico:
                 match = regex.match(code, index)
                 if match:
                     value = match.group(0)
-                    if token_type != 'WHITESPACE':  # Ignorar espaços em branco
+                    if token_type != 'WHITESPACE':
                         tokens.append((token_type, value))
                     index = match.end(0)
                     break
@@ -66,16 +65,15 @@ class Lexico:
         
         return tokens
 
-code_example = """
+Exemplo = """
 p = 8;
 q = 4;
 r = (p + q) * (p - q) / 2;
-
 """
 
 lexer = Lexico()
 
-tokens = lexer.lexer(code_example)
+tokens = lexer.lexico(Exemplo)
 
 for token in tokens:
     print(token)
